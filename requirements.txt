@@ -1,0 +1,12 @@
+dnspython==2.0.0
+Flask==1.1.2
+Flask-Api==2.0
+Flask-Cors==3.0.9
+Flask-RESTful==0.3.8
+itsdangerous==1.1.0
+marshmallow==3.8.0
+marshmallow-enum==1.5.1
+pymongo==3.11.0
+python-decouple==3.3
+pytz==2020.1
+requests==2.24.0
