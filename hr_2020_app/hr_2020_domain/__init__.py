@@ -4,12 +4,17 @@ from .tourist_spot import (
     Address,
     OperatingSchedule,
     TouristSpot,
-
-)
+    WeekDay,
+    WorkTime)
 from .user import User
 
 
 __all__ = [
+    'Address',
     'BasicEntity',
     'BasicValue',
-    'User']
+    'OperatingSchedule',
+    'TouristSpot',
+    'User',
+    'WeekDay',
+    'WorkTime']

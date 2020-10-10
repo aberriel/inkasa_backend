@@ -35,8 +35,10 @@ class GetUserByUsernameInteractor:
             print('GetUserByUsernameInteractor.run -> Obtendo a lista filtrada do banco')
             print('GetUserByUsernameInteractor.run -> username: ' + self.request.username)
             user_list = self.user_adapter.filter(username__eq=self.request.username)
+            print('GetUserByUsernameInteractor.run -> len(user_list): ' + str(len(user_list)))
             print('GetUserByUsernameInteractor.run -> Recuperando o usuário')
             user_found = user_list[0] if user_list and len(user_list) > 0 else None
+            print('GetUserByUsernameInteractor.run -> user_found: ' + str(user_found))
             print('GetUserByUsernameInteractor.run -> Montando o response e retornando')
             return GetUserByUsernameResponseModel(user_found)
         except Exception as exc:

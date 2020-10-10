@@ -12,7 +12,7 @@
         "state": "RJ",
         "postal_code": "22793-080"
     },
-    "operating_schedule": [
+    "operating_schedules": [
         {
             "week_day": "SUNDAY",
             "work_times": [

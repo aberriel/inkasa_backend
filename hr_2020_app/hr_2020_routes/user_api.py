@@ -94,6 +94,7 @@ class UserResource(UserResourceBase):
 
 class UserByUsernameResource(UserResourceBase):
     def get(self, username: str):
+        print('UserByUsernameResource.get -> Entrando')
         try:
             request_json = {'username': username}
             request = GetUserByUsernameRequestModel(request_json)
@@ -106,6 +107,7 @@ class UserByUsernameResource(UserResourceBase):
                     'http_status': 404,
                     'error': { 'message': 'NOT FOUND' }
                 }, 404
+            return response, 200
         except Exception as exc:
             stack_trace = traceback.format_exc()
             return {
