@@ -39,9 +39,8 @@ class CreateUserInteractor:
             raise UsernameAlreadyExistsException(f'Username {self.request.username} is in use.')
 
     def mount_user(self):
-        user_data = User(
-            username=self.request.username,
-            password=self.request.password)
+        user_data = User(username=self.request.username)
+        user_data.set_password(self.request.password)
         user_data.set_adapter(self.user_adapter)
         return user_data
 

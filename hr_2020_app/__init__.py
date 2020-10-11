@@ -6,6 +6,7 @@ from flask import Flask
 from flask_cors import CORS
 from flask_restful import Api
 from hr_2020_app.hr_2020_routes import (
+    AuthenticationApi,
     HealthApi,
     ServiceStatusApi,
     TouristSpotByIdResource,
@@ -22,6 +23,8 @@ cors = CORS(app, resource={r"/*": {"origins": "*"}})
 app.config['LOGGER_NAME'] = 'hackinrio_2020'
 
 api = Api(app, prefix='/api')
+
+api.add_resource(AuthenticationApi, '/auth', '/auth/')
 api.add_resource(HealthApi, '/healthcheck', '/healthcheck/')
 api.add_resource(ServiceStatusApi, '/status', '/status/')
 

@@ -43,6 +43,10 @@ from .user import (
     GetUserByUsernameInteractor,
     GetUserByUsernameRequestModel,
     GetUserByUsernameResponseModel,
+    UpdateUserPasswordException,
+    UpdateUserPasswordInteractor,
+    UpdateUserPasswordRequestModel,
+    UpdateUserPasswordResponseModel,
     UsernameAlreadyExistsException,
     UserNotFoundException)
 
@@ -92,5 +96,9 @@ __all__ = [
     'GetUserByUsernameInteractor',
     'GetUserByUsernameRequestModel',
     'GetUserByUsernameResponseModel',
+    'UpdateUserPasswordException',
+    'UpdateUserPasswordInteractor',
+    'UpdateUserPasswordRequestModel',
+    'UpdateUserPasswordResponseModel',
     'UsernameAlreadyExistsException',
     'UserNotFoundException']

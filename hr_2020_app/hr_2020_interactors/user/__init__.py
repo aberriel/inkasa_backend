@@ -30,6 +30,11 @@ from .get_user_by_username import (
     GetUserByUsernameInteractor,
     GetUserByUsernameRequestModel,
     GetUserByUsernameResponseModel)
+from .update_user_password import (
+    UpdateUserPasswordException,
+    UpdateUserPasswordInteractor,
+    UpdateUserPasswordRequestModel,
+    UpdateUserPasswordResponseModel)
 
 
 __all__ = [
@@ -57,5 +62,9 @@ __all__ = [
     'GetUserByUsernameRequestModel',
     'GetUserByUsernameResponseModel',
     'IncorrectCredentialsException',
+    'UpdateUserPasswordException',
+    'UpdateUserPasswordInteractor',
+    'UpdateUserPasswordRequestModel',
+    'UpdateUserPasswordResponseModel',
     'UsernameAlreadyExistsException',
     'UserNotFoundException']

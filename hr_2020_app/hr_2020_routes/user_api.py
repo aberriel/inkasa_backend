@@ -16,7 +16,9 @@ from hr_2020_app.hr_2020_interactors import (
     GetUserResponseModel,
     GetUserByUsernameInteractor,
     GetUserByUsernameRequestModel,
-    GetUserByUsernameResponseModel)
+    GetUserByUsernameResponseModel,
+    UpdateUserPasswordInteractor,
+    UpdateUserPasswordRequestModel)
 
 import traceback
 
@@ -82,6 +84,25 @@ class UserResource(UserResourceBase):
                    'error': { 'message': 'NOT FOUND' }
                }, 404
             return response, 200
+        except Exception as exc:
+            stack_trace = traceback.format_exc()
+            return {
+                'http_status': 500,
+                'error': {
+                    'stack_trace': stack_trace,
+                    'message': str(exc)
+                }}, 500
+
+    def put(self, user_id: str):
+        try:
+            put_params = request.get_json()
+            put_params['user_id'] = user_id
+            request_obj = UpdateUserPasswordRequestModel(put_params)
+            interactor = UpdateUserPasswordInteractor(
+                adapter=self._get_user_adapter(),
+                request=request_obj)
+            response = interactor.run()()
+            return response, 201
         except Exception as exc:
             stack_trace = traceback.format_exc()
             return {
