@@ -26,3 +26,6 @@ Optamos em montar uma PWA e criamos uma aplicação com utilização de React no
 #### Repositório Backend : <a href="https://github.com/aberriel/inkasa_backend">Repositório Backend</a>
 
 ### Demo : <a href="https://kind-lamport-027b7c.netlify.app/">Demo</a>
+
+Login DEMO: teste@teste.com
+Senha DEMO: teste123
