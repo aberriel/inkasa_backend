@@ -1,1 +1,1 @@
-web: gunicorn hr_2020_app:app
+web: flask run -h 0.0.0.0 -p 8000
