@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from config import Config
 from flask import Flask
 from flask_cors import CORS
