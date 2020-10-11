@@ -1,1 +1,1 @@
-web gunicorn hr_2020_app:app
+web: gunicorn hr_2020_app:app
