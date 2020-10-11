@@ -20,7 +20,7 @@ class AuthenticationApi(Resource):
             db_password=config.MONGODB_PASSWORD)
         return adapter
 
-    def get(self):
+    def post(self):
         get_params = request.get_json()
         try:
             request_data = CheckUserCredentialsRequestModel(get_params)
