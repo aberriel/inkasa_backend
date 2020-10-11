@@ -34,10 +34,10 @@ class CheckUserCredentialsInteractor:
         self.logger = logging.getLogger(__name__)
 
     def get_user(self):
-        user_data = self.adapter.filter(username__eq=self.request.username)
-        if not user_data:
+        users = self.adapter.filter(username__eq=self.request.username)
+        if not users or len(users) == 0:
             raise IncorrectCredentialsException(f'User {self.request.username} not found')
-        return user_data
+        return users[0]
 
     def run(self):
         try:

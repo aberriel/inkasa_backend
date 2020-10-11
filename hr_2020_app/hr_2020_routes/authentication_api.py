@@ -27,8 +27,13 @@ class AuthenticationApi(Resource):
             interactor = CheckUserCredentialsInteractor(
                 adapter=self._get_user_adapter(),
                 request=request_data)
-            response = interactor.run()
-            return response()
+            response = interactor.run()()
+            if not response:
+                return {
+                    'status': 'error',
+                    'message': 'access denied'
+                }, 401
+            return { 'status': 'ok' }, 200
         except Exception as e:
             return {
                 'status': 'error',

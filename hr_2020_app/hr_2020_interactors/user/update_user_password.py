@@ -41,8 +41,8 @@ class UpdateUserPasswordInteractor:
     def run(self):
         try:
             user_data = self.get_user()
-            save_result = self.update_user(user_data)
-            response = UpdateUserPasswordResponseModel(save_result)
+            self.update_user(user_data)
+            response = UpdateUserPasswordResponseModel(self.request.user_id)
             return response
         except Exception as exc:
             msg = f'Error during update user password: ' \

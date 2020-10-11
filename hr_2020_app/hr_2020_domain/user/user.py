@@ -7,6 +7,7 @@ from itsdangerous import (
     TimedJSONWebSignatureSerializer as Serializer)
 from marshmallow import fields, post_load
 
+import bcrypt
 import hashlib
 
 
@@ -29,13 +30,13 @@ class User(BasicEntity):
 
     @staticmethod
     def _encode_password(password: str):
-        if password:
-            return hashlib.md5(password.encode())
-        return ''
+        return bcrypt.hashpw(password, bcrypt.gensalt())
+
+    def _check_password(self, password: str):
+        return bcrypt.checkpw(password, self.password)
 
     def authenticate(self, login: str, password: str):
-        password_encoded = hashlib.md5(password.encode())
-        return login == self.username and password_encoded == self.password
+        return login == self.username and self._check_password(password)
 
     def generate_auth_token(self, expiration=3600):
         s = Serializer(current_config.TOKEN_SECRET_KEY, expires_in=expiration)
