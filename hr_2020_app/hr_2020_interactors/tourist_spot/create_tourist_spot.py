@@ -37,15 +37,10 @@ class CreateTouristSpotInteractor:
         return tourist_spot.save()
 
     def run(self):
-        print('CreateTouristSpotInteractor.run -> Entrando')
         try:
-            print('CreateTouristSpotInteractor.run -> Montando o TouristSpot')
             tourist_spot = TouristSpot.from_json(self.request.json_data)
-            print('CreateTouristSpotInteractor.run -> Salvando no banco')
             save_result = self.save_tourist_spot(tourist_spot)
-            print('CreateTouristSpotInteractor.run -> Montando o response')
             response = CreateTouristSpotResponseModel(save_result)
-            print('CreateTouristSpotInteractor.run -> Retornano o response')
             return response
         except Exception as exc:
             msg = f'Error during create tourist spot: ' \
