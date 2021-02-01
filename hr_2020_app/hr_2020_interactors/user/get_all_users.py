@@ -28,16 +28,11 @@ class GetAllUsersInteractor:
         self.logger = logging.getLogger(__name__)
 
     def run(self):
-        print('GetAllUsersInteractor.run -> Entrando')
         try:
-            print('GetAllUsersInteractor.run -> Pegando todos os usuários')
             user_list = self.user_adapter.list_all()
-            print('GetAllUsersInteractor.run -> Retornando no response')
             return GetAllUsersResponseModel(user_list)
         except Exception as exc:
-            print('GetAllUsersInteractor.run -> Ocorreu um erro')
             msg = f'Error during get all users: ' \
                   f'{exc.__class__.__name__}: {exc}'
-            print('GetAllUsersInteractor.run -> Mensagem de erro: ' + msg)
             self.logger.error(msg)
             raise GetAllUsersException(msg)

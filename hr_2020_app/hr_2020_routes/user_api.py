@@ -94,7 +94,6 @@ class UserResource(UserResourceBase):
 
 class UserByUsernameResource(UserResourceBase):
     def get(self, username: str):
-        print('UserByUsernameResource.get -> Entrando')
         try:
             request_json = {'username': username}
             request = GetUserByUsernameRequestModel(request_json)

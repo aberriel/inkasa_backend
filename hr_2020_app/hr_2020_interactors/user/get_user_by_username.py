@@ -31,21 +31,12 @@ class GetUserByUsernameInteractor:
 
     def run(self):
         try:
-            print('GetUserByUsernameInteractor.run -> Entrando')
-            print('GetUserByUsernameInteractor.run -> Obtendo a lista filtrada do banco')
-            print('GetUserByUsernameInteractor.run -> username: ' + self.request.username)
             user_list = self.user_adapter.filter(username__eq=self.request.username)
-            print('GetUserByUsernameInteractor.run -> len(user_list): ' + str(len(user_list)))
-            print('GetUserByUsernameInteractor.run -> Recuperando o usuário')
             user_found = user_list[0] if user_list and len(user_list) > 0 else None
-            print('GetUserByUsernameInteractor.run -> user_found: ' + str(user_found))
-            print('GetUserByUsernameInteractor.run -> Montando o response e retornando')
             return GetUserByUsernameResponseModel(user_found)
         except Exception as exc:
-            print('GetUserByUsernameInteractor.run -> Um erro ocorreu')
+
             msg = f'Error during get user: ' \
                   f'{exc.__class__.__name__}: {exc}'
-            print('GetUserByUsernameInteractor.run -> Mensagem de erro: ' + msg)
             self.logger.error(msg)
-            print('GetUserByUsernameInteractor.run -> Saindo com erro')
             raise GetUserByUsernameException(msg)

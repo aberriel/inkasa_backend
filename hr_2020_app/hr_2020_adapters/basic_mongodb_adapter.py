@@ -40,27 +40,18 @@ class BasicMongodbAdapter:
 
     def _get_client(self):
         connection_string = self.db_url.format(username=self.db_username, password=self.db_password)
-        print('BasicMongodbAdapter._get_client -> connection_string: ' + connection_string)
         return pymongo.MongoClient(connection_string, ssl_cert_reqs=ssl.CERT_NONE)
 
     def _get_db(self):
         client = self._get_client()
-        print('BasicMongodbAdapter._get_db -> db_name: ' + str(self.db_name))
         return client[self.db_name]
 
     def _get_table(self):
-        print('BasicMongodbAdapter._get_table -> table_name: ' + self.table_name)
         return self._db[self.table_name]
 
     def _instantiate_object(self, x):
-        print('BasicMongodbAdapter._instantiate_object -> Entrando')
-        print('BasicMongodbAdapter._instantiate_object -> x: ' + str(x))
-        print('BasicMongodbAdapter._instantiate_object -> Montando o objeto a partir do dict')
         obj = self._class.from_json(x)
-        print('BasicMongodbAdapter._instantiate_object -> Objeto montado: ' + str(obj))
-        print('BasicMongodbAdapter._instantiate_object -> Setando o adapter')
         obj.set_adapter(self)
-        print('BasicMongodbAdapter._instantiate_object -> Saindo')
         return obj
 
     @staticmethod
@@ -135,23 +126,14 @@ class BasicMongodbAdapter:
         return delete_result.deleted_count
 
     def filter(self, **kwargs):
-        print('BasicMongodbAdapter.filter -> Entrando')
         filters = self._process_filters(kwargs)
-        print('BasicMongodbAdapter.filter -> filters: ' + str(filters))
         query_result = self._table.find(filters)
-        print('BasicMongodbAdapter.filter -> query_result: ' + str(query_result))
 
         #objects = [self._instantiate_object(x) for x in query_result]
         objects = list()
         for item in query_result:
-            print('BasicMongodbAdapter.filter -> Pegando item')
-            print('BasicMongodbAdapter.filter -> item: ' + str(item))
-            print('BasicMongodbAdapter.filter -> Criando o objeto a partir do dict')
             object = self._instantiate_object(item)
-            print('BasicMongodbAdapter.filter -> Objeto montado: ' + str(object))
             objects.append(object)
-        print('BasicMongodbAdapter.filter -> Saindo do loop onde peguei os ítens')
-        print(f'BasicMongodbAdapter.filter -> Temos {len(objects)} ítens em objects')
         return objects
 
     def _process_filters(self, kwargs):
